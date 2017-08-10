@@ -24,6 +24,23 @@ Just run the following command in your Rails app directory:
 
     $ rake inspect_unique_validations
 
+## Output
+
+```bash
+You have the following unique validations:
+
+Model 'Application':
+[:title] (scope 'account_id'). Index exists: false
+
+Model 'User':
+[:email] (scope 'application_id'). Index exists: true
+[:login] (scope 'application_id'). Index exists: false
+[:facebook_id] (scope 'application_id'). Index exists: true
+[:twitter_id] (scope 'application_id'). Index exists: false
+[:external_user_id] (scope 'application_id'). Index exists: false
+[:blob_id] (scope ''). Index exists: true
+```
+
 ## Copyright
 
 Copyright © 2017 Igor Khomenko. See LICENSE file for further details.

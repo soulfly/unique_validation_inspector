@@ -4,13 +4,20 @@ task :inspect_unique_validations => :environment do
 
   defined_unique_validations = inspector.defined_unique_validations
 
+  puts
   puts "You have the following unique validations:"
 
   defined_unique_validations.each do |item|
-      puts "Model '#{item[0]}':"
-      item[1].each do |validation|
-        puts "#{validation.attributes} (scope '#{validation.options[:scope]}')"
-      end
+    model = item[0]
+    puts
+    puts "Model '#{model.name}':"
+    item[1].each do |validation|
+      scope = validation.options[:scope]
+      attributes = validation.attributes
+      index_exists = inspector.defined_unique_indexes(model.table_name, attributes, scope)
+      puts "#{attributes} (scope '#{scope}'). Index exists: #{index_exists}"
+    end
   end
+  puts
 
 end

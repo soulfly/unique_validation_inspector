@@ -20,14 +20,19 @@ module UniqueValidationInspector
         validators.empty?
       end.collect do |model|
         validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
-        [model.name,  validators]
+        [model,  validators]
       end
 
     end
 
-    # def defined_unique_indexes
-    #
-    # end
+    def defined_unique_indexes(table_name, fields, scope)
+      #https://dev.mysql.com/doc/refman/5.7/en/multiple-column-indexes.html
+      
+      columns = []
+      columns += fields
+      columns.unshift(scope) if scope
+      ActiveRecord::Base.connection.indexes(table_name.to_sym).any? { |i| [lambda { |i| i.columns == columns.map(&:to_s) }].all? { |check| check[i] } }
+    end
 
   end
 end
