@@ -1,0 +1,5 @@
+require 'bundler/setup'
+require 'minitest/autorun'
+require 'rails'
+require 'unique_validation_inspector'
+require_relative 'app'

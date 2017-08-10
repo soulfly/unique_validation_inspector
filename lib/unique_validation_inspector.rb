@@ -20,14 +20,14 @@ module UniqueValidationInspector
         validators.empty?
       end.collect do |model|
         validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
-        [model,  validators]
+        {:model => model,  :validators => validators}
       end
 
     end
 
     def defined_unique_indexes(table_name, fields, scope)
       #https://dev.mysql.com/doc/refman/5.7/en/multiple-column-indexes.html
-      
+
       columns = []
       columns += fields
       columns.unshift(scope) if scope
