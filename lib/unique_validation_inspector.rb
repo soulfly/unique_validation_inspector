@@ -15,9 +15,14 @@ module UniqueValidationInspector
     end
 
     def defined_unique_validations
-      ActiveRecord::Base.descendants.map do |model|
-        [model.name,  model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }]
+      ActiveRecord::Base.descendants.reject do |model|
+        validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
+        validators.empty?
+      end.collect do |model|
+        validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
+        [model.name,  validators]
       end
+
     end
 
     # def defined_unique_indexes
