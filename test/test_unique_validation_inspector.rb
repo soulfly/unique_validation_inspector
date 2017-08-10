@@ -29,10 +29,19 @@ class UniqueValidationInspectorTest < Minitest::Test
     #
     assert_equal :account_id, res.last[:validators][0].options[:scope]
     assert_equal [:title], res.last[:validators][0].attributes
-
   end
 
-  # def test_defined_unique_indexes
-  #   assert_empty @traceroute.routed_actions
-  # end
+  def test_defined_unique_indexes
+    @inspector.defined_unique_validations.each do |item|
+      model = item[:model]
+      item[:validators].each do |validation|
+        index_exists = @inspector.defined_unique_indexes(
+          model.table_name,
+          validation.attributes,
+          validation.options[:scope]
+        )
+        assert_equal false, index_exists
+      end
+    end
+  end
 end

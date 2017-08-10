@@ -1,5 +1,3 @@
-require 'rails'
-require 'active_record'
 
 class User < ActiveRecord::Base
   validates :email, :uniqueness => {:scope => :application_id, :case_sensitive => false, :message => "has already been taken."}
@@ -13,3 +11,5 @@ end
 class Application < ActiveRecord::Base
   validates :title, uniqueness: { scope: :account_id, case_sensitive: false }
 end
+
+ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"

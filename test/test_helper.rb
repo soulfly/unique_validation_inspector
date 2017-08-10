@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'minitest/autorun'
 require 'rails'
+require 'active_record'
 require 'unique_validation_inspector'
 require_relative 'app'
