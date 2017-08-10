@@ -32,15 +32,17 @@ class UniqueValidationInspectorTest < Minitest::Test
   end
 
   def test_defined_unique_indexes
-    @inspector.defined_unique_validations.each do |item|
+    valid_results = [[true, false, true], [false]]
+
+    @inspector.defined_unique_validations.each_with_index do |item, index1|
       model = item[:model]
-      item[:validators].each do |validation|
+      item[:validators].each_with_index do |validation, index2|
         index_exists = @inspector.defined_unique_indexes(
           model.table_name,
           validation.attributes,
           validation.options[:scope]
         )
-        assert_equal false, index_exists
+        assert_equal valid_results[index1][index2], index_exists
       end
     end
   end
