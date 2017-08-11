@@ -1,6 +1,7 @@
 # UniqueValidationInspector
 
 ![build passing](https://travis-ci.org/soulfly/unique_validation_inspector.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/unique_validation_inspector.svg)](https://badge.fury.io/rb/unique_validation_inspector)
 
 A Rake task that helps you find unique validations in models that do not have proper DB indexes.
 
