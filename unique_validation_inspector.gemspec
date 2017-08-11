@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "A Rake task that helps you find unique validations in models that do not have DB indexes."
   spec.description   = "A Rake task investigates the application's models definition, then tells you unique validations that do not have DB indexes."
-  spec.homepage      = "https://igor.io"
+  spec.homepage      = "https://github.com/soulfly/unique_validation_inspector"
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
