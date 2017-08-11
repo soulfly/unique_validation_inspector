@@ -1,5 +1,7 @@
 # UniqueValidationInspector
 
+![build passing](https://travis-ci.org/soulfly/unique_validation_inspector.svg?branch=master)
+
 A Rake task that helps you find unique validations in models that do not have proper DB indexes.
 
 Read [How I Reduced my DB Server Load by 80%](https://schneems.com/2017/07/18/how-i-reduced-my-db-server-load-by-80/) article to understand what kind of performance issues you may have without proper indexes.
