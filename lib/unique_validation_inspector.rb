@@ -16,8 +16,12 @@ module UniqueValidationInspector
 
     def defined_unique_validations
       ActiveRecord::Base.descendants.reject do |model|
-        validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
-        validators.empty?
+        if model.abstract_class?
+          true
+        else
+          validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
+          validators.empty?
+        end
       end.collect do |model|
         validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
         {:model => model,  :validators => validators}

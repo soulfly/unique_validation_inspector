@@ -14,7 +14,7 @@ class UniqueValidationInspectorTest < Minitest::Test
     assert_equal User, res.first[:model]
     assert_equal 3, res.first[:validators].count
     #
-    assert_equal :application_id, res.first[:validators][0].options[:scope]
+    assert_nil res.first[:validators][0].options[:scope]
     assert_equal [:email], res.first[:validators][0].attributes
     #
     assert_equal :application_id, res.first[:validators][1].options[:scope]
@@ -25,14 +25,18 @@ class UniqueValidationInspectorTest < Minitest::Test
 
 
     assert_equal Application, res.last[:model]
-    assert_equal 1, res.last[:validators].count
+    assert_equal 2, res.last[:validators].count
     #
-    assert_equal :account_id, res.last[:validators][0].options[:scope]
-    assert_equal [:title], res.last[:validators][0].attributes
+    assert_nil res.last[:validators][0].options[:scope]
+    assert_equal [:email], res.last[:validators][0].attributes
+    #
+    assert_equal :account_id, res.last[:validators][1].options[:scope]
+    assert_equal [:title], res.last[:validators][1].attributes
+    #
   end
 
   def test_defined_unique_indexes
-    valid_results = [[true, false, true], [false]]
+    valid_results = [[false, false, true], [false, false]]
 
     @inspector.defined_unique_validations.each_with_index do |item, index1|
       model = item[:model]
