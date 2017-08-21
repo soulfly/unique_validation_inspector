@@ -12,6 +12,7 @@ module UniqueValidationInspector
 
     def initialize(app)
       @app = app
+      load_models
     end
 
     def defined_unique_validations
@@ -36,6 +37,18 @@ module UniqueValidationInspector
       columns += fields
       columns.unshift(scope) if scope
       ActiveRecord::Base.connection.indexes(table_name.to_sym).any? { |i| [lambda { |i| i.columns == columns.map(&:to_s) }].all? { |check| check[i] } }
+    end
+
+    private
+
+    # Since Rails doesn't load classes unless it needs them, we must read the models from the folder.
+    def load_models
+      Dir[Rails.root.to_s + '/app/models/**/*.rb'].each do |file|
+        begin
+          require file
+        rescue
+        end
+      end
     end
 
   end
