@@ -1,6 +1,7 @@
 desc 'Finds unique validations in models that do not have DB indexes.'
 task :inspect_unique_validations => :environment do
   inspector = UniqueValidationInspector::Inspector.new Rails.application
+  inspector.load_everything!
 
   defined_unique_validations = inspector.defined_unique_validations
 

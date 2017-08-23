@@ -12,6 +12,11 @@ module UniqueValidationInspector
 
     def initialize(app)
       @app = app
+
+    end
+
+    def load_everything!
+      @app.eager_load!
     end
 
     def defined_unique_validations
