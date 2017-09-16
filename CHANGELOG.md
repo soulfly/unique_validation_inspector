@@ -1,3 +1,9 @@
+## 0.2.0 (September 16, 2017)
+
+#### Features
+
+* Better output message format
+
 ## 0.1.3 (August 23, 2017)
 
 #### Fixes
