@@ -59,9 +59,14 @@ Model 'User':
 [:facebook_id] (scope 'application_id'). Index exists: true
 [:twitter_id] (scope 'application_id'). Index exists: false
 [:external_user_id] (scope 'application_id'). Index exists: false
-[:blob_id] (scope ''). Index exists: true
+[:blob_id]. Index exists: true
 ```
 All things with **Index exists: false** are problematic and you should fix it by adding proper DB indexes.
+
+Consider use one of the following solutions to resolve above issues:
+* Add proper DB index.
+* Move unique validation to DB level.
+More info in the article https://medium.com/@igorkhomenko/rails-make-sure-you-have-proper-db-indexes-for-your-models-unique-validations-ffd0364df26f
 
 ## Copyright
 
