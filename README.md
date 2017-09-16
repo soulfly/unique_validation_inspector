@@ -16,7 +16,9 @@ If you do not have DB index for **facebook_id** field then your **Model.create**
 
 So this gem is here to notify you about it.
 
-Read [How I Reduced my DB Server Load by 80%](https://schneems.com/2017/07/18/how-i-reduced-my-db-server-load-by-80/) article to understand what kind of performance issues you may have without proper indexes.
+Read [Rails: make sure you have proper DB indexes for your model’s unique validations](https://medium.com/@igorkhomenko/rails-make-sure-you-have-proper-db-indexes-for-your-models-unique-validations-ffd0364df26f) article to understand what kind of performance issues you may have without proper indexes.
+
+Also read [How I Reduced my DB Server Load by 80%](https://schneems.com/2017/07/18/how-i-reduced-my-db-server-load-by-80/) article to understand what kind of performance issues you may have without proper indexes.
 
 ## Supported versions
 * Ruby 1.8.7, 1.9.2, 1.9.3, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5 (trunk)
