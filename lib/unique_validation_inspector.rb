@@ -12,7 +12,6 @@ module UniqueValidationInspector
 
     def initialize(app)
       @app = app
-
     end
 
     def load_everything!
@@ -31,16 +30,22 @@ module UniqueValidationInspector
         validators = model.validators.select {|v| v.is_a?(ActiveRecord::Validations::UniquenessValidator) }
         {:model => model,  :validators => validators}
       end
-
     end
 
     def defined_unique_indexes(table_name, fields, scope)
       #https://dev.mysql.com/doc/refman/5.7/en/multiple-column-indexes.html
-
       columns = []
       columns += fields
-      columns.unshift(scope) if scope
-      ActiveRecord::Base.connection.indexes(table_name.to_sym).any? { |i| [lambda { |i| i.columns == columns.map(&:to_s) }].all? { |check| check[i] } }
+      columns = columns + Array(scope) if scope
+      unique_indexes(table_name).any? do |index_def|
+        columns.map(&:to_s).sort == index_def.columns.sort
+      end
+    end
+
+    private
+
+    def unique_indexes(table_name)
+      ActiveRecord::Base.connection.indexes(table_name.to_sym).select{|i| i.unique }
     end
 
   end
