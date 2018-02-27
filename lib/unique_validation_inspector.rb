@@ -32,13 +32,14 @@ module UniqueValidationInspector
       end
     end
 
-    def defined_unique_indexes(table_name, fields, scope)
+    def defined_unique_indexes(table_name, field, scope)
       #https://dev.mysql.com/doc/refman/5.7/en/multiple-column-indexes.html
       columns = []
-      columns += fields
+      columns += field
       columns = columns + Array(scope) if scope
+
       unique_indexes(table_name).any? do |index_def|
-        columns.map(&:to_s).sort == index_def.columns.sort
+        columns.map(&:to_s) == index_def.columns
       end
     end
 

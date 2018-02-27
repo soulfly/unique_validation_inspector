@@ -19,7 +19,7 @@ ActiveRecord::Schema.define do
   add_index "users", ["application_id", "email"], name: "index_users_on_application_id_and_email", using: :btree
   add_index "users", ["blob_id"], name: "users_blob_id_fk", using: :btree
   add_index "users", ["full_name"], name: "index_users_on_full_name", using: :btree
-  add_index "users", ["login", "application_id"], name: "index_users_on_login_and_application_id", using: :btree
+  add_index "users", ["login", "application_id"], name: "index_users_on_login_and_application_id", unique: true, using: :btree
 
   create_table "applications", :force => true do |t|
      t.string   "title"
@@ -30,5 +30,7 @@ ActiveRecord::Schema.define do
   end
 
   add_index "applications", ["account_id"], name: "applications_account_id_fk", using: :btree
+  add_index "applications", ["title", "account_id"], name: "index_users_on_title_and_account_id", unique: true, using: :btree
+
 
 end

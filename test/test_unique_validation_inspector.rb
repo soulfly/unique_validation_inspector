@@ -36,7 +36,7 @@ class UniqueValidationInspectorTest < Minitest::Test
   end
 
   def test_defined_unique_indexes
-    valid_results = [[false, false, true], [false, false]]
+    valid_results = [[false, true, false], [false, true]]
 
     @inspector.defined_unique_validations.each_with_index do |item, index1|
       model = item[:model]
