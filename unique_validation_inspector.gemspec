@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "unique_validation_inspector"
   spec.version       = UniqueValidationInspector::VERSION
   spec.authors       = ["Igor Khomenko"]
-  spec.email         = ["igor@quickblox.com"]
+  spec.email         = ["khomenkoigor@gmail.com"]
 
   spec.summary       = "A Rake task that helps you find unique validations in models that do not have proper DB indexes."
   spec.description   = "A Rake task investigates the application's models definition, then tells you unique validations that do not have DB indexes."
