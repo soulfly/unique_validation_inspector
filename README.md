@@ -12,7 +12,7 @@ For example, you have **User** model and uniqueness validation for **facebook_id
 ```sql
  SELECT  1 AS one FROM `users` WHERE (`users`.`facebook_id ` = 1523123128921623) LIMIT 1
 ```
-If you do not have DB index for **facebook_id** field then your **Model.create**, **Model.save**, **Model.update** ... operations will be slower and slower with user base grow. 
+If you do not have DB index for **facebook_id** field then your **Model.create**, **Model.save**, **Model.update** ... operations will be slower and slower with user base grow.
 
 So this gem is here to notify you about it.
 
@@ -21,9 +21,9 @@ Read [Rails: make sure you have proper DB indexes for your model’s unique vali
 Also read [How I Reduced my DB Server Load by 80%](https://schneems.com/2017/07/18/how-i-reduced-my-db-server-load-by-80/) article.
 
 ## Supported versions
-* Ruby 1.8.7, 1.9.2, 1.9.3, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5 (trunk)
+* Ruby 1.8.7, 1.9.2, 1.9.3, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5
 
-* Rails 3.0.x, 3.1.x, 3.2.x, 4.0.x, 4.1.x, 5.0.x
+* Rails 3.0.x, 3.1.x, 3.2.x, 4.0.x, 4.1.x, 5.0.x, 5.1.x, 5.2.x
 
 ## Installation
 
