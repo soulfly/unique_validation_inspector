@@ -1,3 +1,5 @@
+require 'colorize'
+
 desc 'Finds unique validations in models that do not have DB indexes.'
 task :inspect_unique_validations => :environment do
   inspector = UniqueValidationInspector::Inspector.new Rails.application
@@ -24,7 +26,8 @@ task :inspect_unique_validations => :environment do
         message = "#{attributes}"
         message += " (scope '#{scope}')" if scope
         message += ". Index exists: #{index_exists}."
-        puts message
+        output_color = index_exists ? :green : :red
+        puts message.colorize(output_color)
       end
     end
 
